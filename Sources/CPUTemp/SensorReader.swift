@@ -41,12 +41,9 @@ enum SensorReader {
             }
     }
 
-    /// Representative CPU temperature for the menu bar: the hottest CPU-class
-    /// sensor. Falls back to the hottest sensor of any kind, then to nil.
+    /// CPUに分類できるセンサーがなければ、ほかの部位の温度で代用しない。
     static func headlineTemperature(from sensors: [Sensor]) -> Double? {
-        if let cpuMax = sensors.filter({ $0.category == .cpu }).map(\.value).max() {
-            return cpuMax
-        }
-        return sensors.map(\.value).max()
+        sensors.filter { $0.category == .cpu && validRange.contains($0.value) }
+            .map(\.value).max()
     }
 }

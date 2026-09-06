@@ -70,8 +70,8 @@ struct PopoverView: View {
                         .font(.system(size: 36, weight: .bold, design: .rounded))
                         .foregroundStyle(TempColor.color(for: h))
                 } else {
-                    Text("--℃")
-                        .font(.system(size: 36, weight: .bold, design: .rounded))
+                    Text("取得不可")
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                 }
             }

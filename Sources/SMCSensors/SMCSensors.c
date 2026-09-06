@@ -150,8 +150,6 @@ void smc_enumerate_smc_sensors(smc_sensor_callback cb, void *ctx) {
     UInt32 total = ((UInt32)out.bytes[0] << 24) | ((UInt32)out.bytes[1] << 16) |
                    ((UInt32)out.bytes[2] << 8)  | out.bytes[3];
 
-    int cpuP = 0, cpuE = 0, gpuN = 0, socN = 0, aneN = 0;
-
     for (UInt32 i = 0; i < total; i++) {
         memset(&in, 0, sizeof(in));
         memset(&out, 0, sizeof(out));
@@ -196,11 +194,11 @@ void smc_enumerate_smc_sensors(smc_sensor_callback cb, void *ctx) {
 
         char name[64];
         switch (second) {
-            case 'p': snprintf(name, sizeof(name), "CPU P-Core %02d", ++cpuP); break;
-            case 'e': snprintf(name, sizeof(name), "CPU E-Core %02d", ++cpuE); break;
-            case 'g': snprintf(name, sizeof(name), "GPU Core %02d",   ++gpuN); break;
-            case 's': snprintf(name, sizeof(name), "SoC %02d",        ++socN); break;
-            case 'a': snprintf(name, sizeof(name), "ANE %02d",        ++aneN); break;
+            case 'p': snprintf(name, sizeof(name), "CPU (SMC %s)", kn); break;
+            case 'e': snprintf(name, sizeof(name), "CPU (SMC %s)", kn); break;
+            case 'g': snprintf(name, sizeof(name), "GPU (SMC %s)", kn); break;
+            case 's': snprintf(name, sizeof(name), "SoC (SMC %s)", kn); break;
+            case 'a': snprintf(name, sizeof(name), "ANE (SMC %s)", kn); break;
             default:  snprintf(name, sizeof(name), "%s",               kn);    break;
         }
 

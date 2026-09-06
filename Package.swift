@@ -20,6 +20,10 @@ let package = Package(
                 .linkedFramework("CoreFoundation"),
                 .linkedFramework("AppKit")
             ]
+        ),
+        .testTarget(
+            name: "CPUTempTests",
+            dependencies: ["CPUTemp"]
         )
     ]
 )

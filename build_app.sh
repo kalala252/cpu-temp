@@ -15,6 +15,8 @@ APP_DIR="$ROOT/dist/$APP_NAME.app"
 MACOS_DIR="$APP_DIR/Contents/MacOS"
 RES_DIR="$APP_DIR/Contents/Resources"
 
+cd "$ROOT"
+
 echo "==> Building (release)…"
 swift build -c release
 
